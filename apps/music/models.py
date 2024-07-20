@@ -1,5 +1,7 @@
 from django.db import models
 
+from datetime import date
+
 class MusicChord(models.Model):
     chord = models.CharField(max_length=10, null=False, blank=False)
     chord_image = models.ImageField(upload_to="chord_image/%Y/%m/%d/", blank=True)
@@ -35,4 +37,9 @@ class VersionMusic(models.Model):
 
 
 class Playlist(models.Model):
+    name = models.CharField(max_length=100, blank=True)
+    date = models.DateField(default=date.today, blank=False)
     music = models.ManyToManyField(Music)
+
+    def __str__(self) -> str:
+        return self.date

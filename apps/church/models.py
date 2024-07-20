@@ -1,6 +1,6 @@
 from django.db import models
 
-from datetime import datetime
+from datetime import date
 
 
 class Church(models.Model):
@@ -13,7 +13,7 @@ class Church(models.Model):
 
 class Cult(models.Model):
     name = models.CharField(max_length=30, null=True, blank=True)
-    date = models.DateField(default=datetime, blank=False)
+    date = models.DateField(default=date.today, blank=False)
     preacher = models.CharField(max_length=50, null=True, blank=True)
     church = models.OneToOneField(
         to=Church,

@@ -1,22 +1,25 @@
-"""
-URL configuration for setup project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+
+from rest_framework import routers
+
+from apps.church.views import ChurchViewSet, CultViewSet, ListCultChurch
+from apps.music.views import MusicViewSet, MusicChordViewSet, VersionMusicViewSet, PlaylistViewSet,\
+ListVersionMusic
+
+router = routers.DefaultRouter()
+
+router.register('church', ChurchViewSet, basename='Igreja')
+router.register('cult', CultViewSet, basename='Culto')
+
+router.register('music', MusicViewSet, basename='Musica')
+router.register('music-chord', MusicChordViewSet, basename='Acorde')
+router.register('version-music', VersionMusicViewSet, basename='Versoes')
+router.register('playlist', PlaylistViewSet, basename='Playlist')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include(router.urls) ),
+    path('cult/<int:pk>/church/', ListCultChurch.as_view()),
+    path('version-music/<int:pk>/music/', ListVersionMusic.as_view()),
 ]
