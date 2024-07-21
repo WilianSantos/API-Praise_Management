@@ -1,11 +1,17 @@
 from rest_framework import serializers
 
-from .models import Music, MusicChord, VersionMusic, Playlist
+from .models import Music, MusicChord, VersionMusic, Playlist, MusicCategory
 
 
 class MusicSerializers(serializers.ModelSerializer):
     class Meta:
         model = Music
+        fields = '__all__'
+
+
+class MusicCategorySerializers(serializers.ModelSerializer):
+    class Meta:
+        model = MusicCategory
         fields = '__all__'
 
 

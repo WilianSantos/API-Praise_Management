@@ -2,19 +2,23 @@ from rest_framework import viewsets, filters, generics
 
 from django_filters.rest_framework import DjangoFilterBackend
 
-from .models import Music, MusicChord, VersionMusic, Playlist
+from .models import Music, MusicChord, VersionMusic, Playlist, MusicCategory
 from .serializers import MusicSerializers, MusicChordSerializers, VersionMusicSerializers, PlaylistSerializers,\
-ListVersionMusicSerializer
+ListVersionMusicSerializer, MusicCategorySerializers
 
 
+class MusicCategoryViewSet(viewsets.ModelViewSet):
+    queryset = MusicCategory.objects.all()
+    serializer_class = MusicCategorySerializers
 
+    
 class MusicViewSet(viewsets.ModelViewSet):
     queryset = Music.objects.all()
     serializer_class = MusicSerializers
 
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
     ordering_fields = ['title_music']
-    search_fields = ['title_music', 'author', 'theme']
+    search_fields = ['title_music', 'author', 'theme', 'category']
 
 
 class MusicChordViewSet(viewsets.ModelViewSet):

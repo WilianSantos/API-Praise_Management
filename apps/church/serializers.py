@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Church, Cult
+from .models import Church, Cult, Function, Member
 
 
 class ChurchSerializer(serializers.ModelSerializer):
@@ -20,4 +20,16 @@ class ListCultChurchSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Cult
-        fields = ['church', 'date', 'preacher']
+        fields = ['church', 'date', 'preacher', 'theme']
+
+
+class FunctionSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Function
+        fields = '__all__'
+
+
+class MemberSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Member
+        fields = '__all__'
