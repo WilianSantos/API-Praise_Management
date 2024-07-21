@@ -2,6 +2,7 @@ asgiref==3.8.1
 Django==4.2
 django-axes==6.5.1
 django-filter==24.2
+django-ipware==7.0.1
 djangorestframework==3.15.2
 drf-yasg==1.21.7
 inflection==0.5.1
@@ -10,6 +11,7 @@ mysqlclient==2.2.4
 packaging==24.1
 pillow==10.4.0
 python-dotenv==1.0.1
+python-ipware==3.0.0
 pytz==2024.1
 PyYAML==6.0.1
 setuptools==71.0.4
